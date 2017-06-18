@@ -4,6 +4,7 @@
     "description": "Z80 Assembler",
     "version": "0.0.2",
     "publisher": "boukichi",
+    "icon": "z80_icon.png",
     "engines": {
         "vscode": "^1.13.0"
     },
@@ -34,6 +35,9 @@
     },
     "license": "https://github.com/BouKiCHi/vscode-pasmo/blob/master/LICENSE",
     "homepage": "https://github.com/BouKiCHi/vscode-pasmo/blob/master/README.md",
+    "bugs": {
+        "url": "https://github.com/BouKiCHi/vscode-pasmo/issues"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/BouKiCHi/vscode-pasmo.git"
