@@ -1,0 +1,113 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "pasmo",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#labels"
+		},
+		{
+			"include": "#jumps"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.pasmo",
+					"match": "\\s*(?i:(equ|org|db|dw|dd|ds|include|incbin|end))\\s"
+				},
+				{
+					"name": "keyword.control.pasmo",
+					"match": "\\s*(?i:(proc|macro|local|public|rept|endm|endp|exitm))\\s"
+				},
+				{
+					"name": "keyword.control.pasmo",
+					"match": "\\s*(?i:(error|warning|shift|defb|defl|defm|defs|defw))\\s"
+				},
+				{
+					"name": "keyword.control.pasmo",
+					"match": "\\s*(?i:(if|else|endif))\\s"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"begin": ";",
+					"end": "\\n",
+					"name": "comment.line.pasmo"
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"match": "AF'"
+				},
+				{
+					"name": "string.quoted.single.pasmo",
+					"begin": "'",
+					"end": "'"
+				},
+				{
+					"name": "string.quoted.double.pasmo",
+					"begin": "\"",
+					"end": "\""
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.integer.hexadecimal.pasmo",
+					"match": "\\$[0-9a-fA-F]+"
+				},
+				{
+					"name": "constant.numeric.integer.hexadecimal.pasmo",
+					"match": "\\b[0-9a-fA-F]+[hH]\\b"
+				},
+				{
+					"name": "constant.numeric.integer.binary.pasmo",
+					"match": "\\b[0-9a-fA-F]+[bB]\\b"
+				},
+				{
+					"match": "\\b\\d+",
+					"name": "constant.numeric.integer.decimal.pasmo"
+				}
+			]
+		},
+		"labels": {
+			"patterns": [
+				{
+					"match": "^(\\w+)[:\\s]",
+					"captures": {
+						"1": {
+							"name": "storage.type.function.pasmo"
+						}
+					}
+				}
+			]
+		},
+		"jumps": {
+			"patterns": [
+				{
+					"name": "entity.name.function.pasmo",
+					"match": "\\s(?i:(jp|jr|djnz|ret|call))\\s"
+				}
+			]
+		}
+	},
+	"scopeName": "source.z80"
+}
