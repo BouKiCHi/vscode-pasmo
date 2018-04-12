@@ -4,6 +4,10 @@ This is a Syntax Coloring extension for Z80 Assembler like pasmo.
 
 ![image1](https://github.com/BouKiCHi/vscode-pasmo/raw/master/image1.png)
 
+## 0.1.2
+- Added .inc, .mac,.mcr extension.
+- Improved some coloring.
+
 ## 0.1.0
 
 - Fixed an issue that incorrectly recognizes add as dd.

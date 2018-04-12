@@ -2,7 +2,7 @@
     "name": "pasmo",
     "displayName": "pasmo",
     "description": "Z80 Assembler",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "publisher": "boukichi",
     "icon": "z80_icon.png",
     "engines": {
@@ -20,7 +20,10 @@
                 ],
                 "extensions": [
                     ".asm",
-                    ".z80"
+                    ".z80",
+                    ".mac",
+                    ".mcr",
+                    ".inc"
                 ],
                 "configuration": "./language-configuration.json"
             }

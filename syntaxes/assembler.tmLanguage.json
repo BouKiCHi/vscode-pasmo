@@ -6,39 +6,69 @@
 			"include": "#comments"
 		},
 		{
-			"include": "#keywords"
+			"match": "^(?i:\\.?(equ|org|db|dw|dd|ds|include|incbin|end))\\b",
+			"captures": {
+				"1": { "patterns": [ {"include": "#keywords"} ] }
+			}
 		},
 		{
-			"include": "#strings"
+			"match": "^(\\w+:?)$",
+			"captures": {
+				"1": { "patterns": [ { "include":"#labels" } ] }
+			},
+			"comment": "ラベル行"
 		},
 		{
-			"include": "#numbers"
+			"match": "^(\\w+:?)\\s+(.*)",
+			"captures": {
+				"1": { "patterns": [ { "include":"#labels" } ] },
+				"2": { "patterns": [ { "include":"#main" } ] }
+			}
 		},
 		{
-			"include": "#labels"
-		},
-		{
-			"include": "#jumps"
+			"match": "^\\s+(.*)",
+			"captures": {
+				"1": { "patterns": [ { "include":"#main" } ] }
+			}
 		}
 	],
 	"repository": {
+		"main": {
+			"patterns": [
+				{ "match": "\\b(?i:(add|dec))\\b" },
+				{ "include": "#keywords" },
+				{ "include": "#strings" },
+				{ "include": "#numbers" },
+				{ "include": "#variables" },
+				{ "include": "#comments" },
+				{ "include": "#jumps" }
+			]
+		},
 		"keywords": {
 			"patterns": [
 				{
 					"name": "keyword.control.pasmo",
-					"match": "(^|\\s+)(?i:(equ|org|db|dw|dd|ds|include|incbin|end))\\s"
+					"match": "\\b\\.?(?i:(equ|org|db|dw|dd|ds|include|incbin|end))\\b"
 				},
 				{
 					"name": "keyword.control.pasmo",
-					"match": "(^|\\s+)(?i:(proc|macro|local|public|rept|endm|endp|exitm))\\s"
+					"match": "\\b\\.?(?i:(proc|macro|local|public|rept|endm|endp|exitm))\\b"
 				},
 				{
 					"name": "keyword.control.pasmo",
-					"match": "(^|\\s+)(?i:(error|warning|shift|defb|defl|defm|defs|defw))\\s"
+					"match": "\\b\\.?(?i:(error|warning|shift|defb|defl|defm|defs|defw|defz))\\b"
 				},
 				{
 					"name": "keyword.control.pasmo",
-					"match": "(^|\\s+)(?i:(if|else|endif))\\s"
+					"match": "\\b\\.?(?i:(if|else|endif))\\b"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"name": "variable.parameter.pasmo",
+					"match": "\\b\\(?(?i:(af|bc|de|hl|ix|iy|a|b|c|d|e|h|l))\\b"
 				}
 			]
 		},
@@ -53,9 +83,7 @@
 		},
 		"strings": {
 			"patterns": [
-				{
-					"match": "(?i:af)'"
-				},
+				{ "match": "(?i:af)'" },
 				{
 					"name": "string.quoted.single.pasmo",
 					"begin": "'",
@@ -72,7 +100,7 @@
 			"patterns": [
 				{
 					"name": "constant.numeric.integer.hexadecimal.pasmo",
-					"match": "\\$[0-9a-fA-F]+"
+					"match": "\\b\\$[0-9a-fA-F]+\\b"
 				},
 				{
 					"name": "constant.numeric.integer.hexadecimal.pasmo",
@@ -83,7 +111,7 @@
 					"match": "\\b[0-9a-fA-F]+[bB]\\b"
 				},
 				{
-					"match": "\\b\\d+",
+					"match": "\\b\\d+\\b",
 					"name": "constant.numeric.integer.decimal.pasmo"
 				}
 			]
@@ -91,7 +119,7 @@
 		"labels": {
 			"patterns": [
 				{
-					"match": "^(\\w+)[:\\s]",
+					"match": "(\\w+):?",
 					"captures": {
 						"1": {
 							"name": "storage.type.function.pasmo"
@@ -104,7 +132,7 @@
 			"patterns": [
 				{
 					"name": "entity.name.function.pasmo",
-					"match": "\\s(?i:(jp|jr|djnz|ret|call))\\s"
+					"match": "\\b(?i:(jp|jr|djnz|ret|call))\\b"
 				}
 			]
 		}
